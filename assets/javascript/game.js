@@ -1,21 +1,38 @@
-// Where the computer picks what it will use as random guess. The split is a method to break up the string and pick one letter at a time. 
-var computerChoices = ("abcdefghijklmnopqrstuvwxyz").split("");
+//Current word is randomly chosen from an array. this was called computerChoices in last
+var cuteAnimals =["rabbits", "deer", "bears", "ducks"]
 
-//Previous guess array that will populate the failed guesses of user
+// or??? below to define the cuteAnimals? 
+
+//by making it an object??
+var cuteAnimals = {
+	01: "rabbits",
+	02: "deer",
+	03: "bears",
+	04: "ducks"
+};
+
+//The varriable for the users unsucceful guesses
 var previousGuess = [];
 
-
-// Creating variables to hold the number of wins, losses, and ties. They start at 0.
+// Variable for wins
 var wins = 0;
+// Variable for losses
 var losses = 0;
-var guessLeft = 9;
-
+// Variable for how many guesses are left 
+var guessLeft = 10;
+ 
+//============== Function to Start the Game ================//
 
 // This function is run whenever the user presses a key.
 document.onkeyup = function(event) {
 
   // Determines which key was pressed by the user
   var userGuess = event.key;
+
+  //Disables the same key from being clicked twice!!!!!
+  if(previousGuess.includes(userGuess)) {
+  return;
+}
 
   //Previous guess is uploaded 
   previousGuess.push(userGuess);
@@ -28,29 +45,9 @@ document.onkeyup = function(event) {
   // Randomly chooses a choice from the options array. This is the Computer's guess.
   var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
 
-  if (userGuess === "a" ||
-    userGuess === "b" ||
-    userGuess === "c" ||
-    userGuess === "d" ||
-    userGuess === "e" ||
-    userGuess === "f" ||
-    userGuess === "j" ||
-    userGuess === "k" ||
-    userGuess === "l" ||
-    userGuess === "m" ||
-    userGuess === "n" ||
-    userGuess === "o" ||
-    userGuess === "p" ||
-    userGuess === "q" ||
-    userGuess === "r" ||
-    userGuess === "s" ||
-    userGuess === "t" ||
-    userGuess === "u" ||
-    userGuess === "v" ||
-    userGuess === "w" ||
-    userGuess === "x" ||
-    userGuess === "y" ||
-    userGuess === "z") {
+  if () {
+
+
     if (userGuess === computerGuess) {
       //If the user matches computer then they gain point
       wins++;
@@ -70,15 +67,51 @@ document.onkeyup = function(event) {
       guessLeft = 9;
       previousGuess = [];
     }
+
+
   }
+
+
+
+
+
+//Word is displayed to the screen with missing characters represented by "_"
+
+//Measure the length of the word to determine ammount the "_"'s
+
+//Press any key to get started with guessing 
+
+//Variable Wins
+
+// Variable for current word trying to guess
+
+//Variable for number of remaining guesses
+
+//Variable for Letters already guessed
+
+//If user guesses correct letter
+  //Letter is pushed to fill one of the "_"'s in the current word
+  //Remaining guesses goes down by one
+
+//If user guesses incorrect letter
+  //Letter is pushed to the already guessed letters
+  //Create a func to prevent usage of the same letters being pressed if they are not correct
+  //Remaining guesses goes down by one 
+
+//If user runs out of guesses before completing the word
+  //Word is randomized 
+  //Guesses go back to the original number
+
+
+
 
 
   // Creating a variable to hold our new HTML. Our HTML now keeps track of the user and computer guesses, and wins/losses/ties.
   var html =
-    "<h1>The Psychic Game</h1>" +
-    "<p>Guess what letter I’m thinking of<p>" +
+    "<h1>Hangman</h1>" +
+    "<p>Press any key to get started!<p>" +
     "<p>wins: " + wins + "</p>" +
-    "<p>losses: " + losses + "</p>" +
+    "<p>Current Word: " + //whatever the func is to call random letter// + "</p>" +
     "<p>Guesses Left: " + guessLeft + "</p>" +
     "<p>Your Guesses so far: " + previousGuess.join(", ") + "</p>"
 
